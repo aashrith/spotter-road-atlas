@@ -5,6 +5,42 @@
   },
   "item": [
     {
+      "name": "Trip plan + ELD logs (multi-day)",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"current_location\": \"Dallas, TX\",\n  \"pickup_location\": \"Oklahoma City, OK\",\n  \"dropoff_location\": \"Chicago, IL\",\n  \"current_cycle_used_hours\": 20,\n  \"start_time\": \"2026-06-15T08:00:00\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/trip-plan",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "8000",
+          "path": ["api", "v1", "trip-plan"]
+        }
+      }
+    },
+    {
+      "name": "Trip plan + ELD logs (cross-country, restart)",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"current_location\": \"Los Angeles, CA\",\n  \"pickup_location\": \"Phoenix, AZ\",\n  \"dropoff_location\": \"New York, NY\",\n  \"current_cycle_used_hours\": 55\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/trip-plan",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "8000",
+          "path": ["api", "v1", "trip-plan"]
+        }
+      }
+    },
+    {
       "name": "Plan fuel route (long, multiple stops)",
       "request": {
         "method": "GET",

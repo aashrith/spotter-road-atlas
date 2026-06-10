@@ -46,6 +46,25 @@ def sample_route(
     return tuple(points)
 
 
+def coordinate_at_mile(
+    sampled_points: Sequence[RoutePoint], mile: float
+) -> Coordinate:
+    """Interpolate the route coordinate at a given distance from the start."""
+    if not sampled_points:
+        raise ValueError("Empty route.")
+    if mile <= sampled_points[0].position_miles:
+        return sampled_points[0].coord
+    for prev, cur in zip(sampled_points, sampled_points[1:]):
+        if cur.position_miles >= mile:
+            span = cur.position_miles - prev.position_miles
+            t = (mile - prev.position_miles) / span if span > 0 else 0.0
+            return Coordinate(
+                lat=prev.coord.lat + (cur.coord.lat - prev.coord.lat) * t,
+                lng=prev.coord.lng + (cur.coord.lng - prev.coord.lng) * t,
+            )
+    return sampled_points[-1].coord
+
+
 class StationGrid:
     """Spatial hash of stations for O(1) neighbourhood lookups."""
 

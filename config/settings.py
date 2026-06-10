@@ -13,12 +13,21 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.staticfiles",
     "rest_framework",
+    "corsheaders",
     "routes",
+    "trips",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.common.CommonMiddleware",
+]
+
+# React SPA (Vite dev server / Vercel) talks to this API cross-origin.
+CORS_ALLOW_ALL_ORIGINS = os.environ.get("CORS_ALLOW_ALL", "true").lower() == "true"
+CORS_ALLOWED_ORIGINS = [
+    o for o in os.environ.get("CORS_ALLOWED_ORIGINS", "").split(",") if o
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -78,4 +87,11 @@ FUEL_ROUTING = {
     ),
     "HTTP_TIMEOUT_SECONDS": 15,
     "HTTP_USER_AGENT": "fuel-route-api/1.0 (spotter-assessment)",
+}
+
+# --- HOS trip planning (ELD logs) ---
+TRIP_PLANNING = {
+    # "Fueling at least once every 1,000 miles" (assessment assumption).
+    "FUELING_RANGE_MILES": 1000.0,
+    "DEFAULT_START_HOUR": 8,  # trips start at 08:00 unless specified
 }
