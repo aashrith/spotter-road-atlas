@@ -1,0 +1,77 @@
+{
+  "info": {
+    "name": "Fuel Route API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Plan fuel route (long, multiple stops)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/fuel-route?start=Los Angeles, CA&finish=New York, NY",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "8000",
+          "path": ["api", "v1", "fuel-route"],
+          "query": [
+            {"key": "start", "value": "Los Angeles, CA"},
+            {"key": "finish", "value": "New York, NY"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "Plan fuel route (medium)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/fuel-route?start=Dallas, TX&finish=Chicago, IL",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "8000",
+          "path": ["api", "v1", "fuel-route"],
+          "query": [
+            {"key": "start", "value": "Dallas, TX"},
+            {"key": "finish", "value": "Chicago, IL"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "Short route (no stops needed)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/fuel-route?start=Los Angeles, CA&finish=Las Vegas, NV",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "8000",
+          "path": ["api", "v1", "fuel-route"],
+          "query": [
+            {"key": "start", "value": "Los Angeles, CA"},
+            {"key": "finish", "value": "Las Vegas, NV"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "Coordinates input (zero geocoding calls)",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"start\": \"32.7767,-96.797\",\n  \"finish\": \"41.8781,-87.6298\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/fuel-route",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "8000",
+          "path": ["api", "v1", "fuel-route"]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Django==5.2.15
+djangorestframework==3.16.0
+requests==2.32.3
+geonamescache==2.0.0
+zipcodes==1.2.0
