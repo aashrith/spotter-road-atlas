@@ -1,6 +1,8 @@
 __pycache__/
 *.pyc
-db.sqlite3
+# db.sqlite3 is committed intentionally: read-only station reference data
+# that the Vercel serverless function reads (no writes at request time).
 .env
+.vercel
 .venv/
 venv/
